@@ -1,0 +1,18 @@
+[
+	{
+		"slug": "episode-1",
+		"title": "Welcome to the Podcast",
+		"description": "In this first episode, we introduce ourselves and discuss what this podcast is all about.",
+		"coverArt": "/cover-art/episode-1.jpg",
+		"fileUrl": "/episodes/episode-1.mp3",
+		"date": "2024-01-15"
+	},
+	{
+		"slug": "episode-2",
+		"title": "Getting Started",
+		"description": "We dive into the basics and share some tips for getting started.",
+		"coverArt": "/cover-art/episode-2.jpg",
+		"fileUrl": "/episodes/episode-2.mp3",
+		"date": "2024-01-22"
+	}
+]
