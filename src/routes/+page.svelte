@@ -1,5 +1,6 @@
 <script>
-	import episodes from '$lib/episodes.json';
+	// svelte-ignore state_referenced_locally
+	import episodes from '$lib/episodes.json' with { type: 'json' };
 </script>
 
 <h1>Podcast Episodes</h1>

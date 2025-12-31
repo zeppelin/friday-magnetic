@@ -1,4 +1,4 @@
-import episodes from '$lib/episodes.json';
+import episodes from '$lib/episodes.json' with { type: 'json' };
 import { error } from '@sveltejs/kit';
 
 export const prerender = true;

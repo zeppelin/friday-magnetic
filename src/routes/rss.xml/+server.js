@@ -1,4 +1,4 @@
-import episodes from '$lib/episodes.json';
+import episodes from '$lib/episodes.json' with { type: 'json' };
 import { Podcast } from 'podcast';
 
 export const prerender = true;
@@ -36,7 +36,7 @@ export async function GET({ url }) {
 
 	return new Response(xml, {
 		headers: {
-			'Content-Type': 'application/xml; charset=utf-8'
+			'Content-Type': 'application/rss+xml; charset=utf-8'
 		}
 	});
 }

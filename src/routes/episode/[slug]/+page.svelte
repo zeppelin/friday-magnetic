@@ -1,5 +1,6 @@
 <script>
 	let { data } = $props();
+	// svelte-ignore state_referenced_locally
 	const { episode } = data;
 </script>
 

@@ -1,0 +1,7 @@
+# Cloudflare Pages headers file
+# Only set overrides for files that need specific content types
+
+# RSS feed - override default text/xml to application/rss+xml
+/rss.xml
+  Content-Type: application/rss+xml; charset=utf-8
+
