@@ -1,0 +1,9 @@
+# Cloudflare Pages configuration
+# This file is optional but can be used for local development with Wrangler
+# For Cloudflare Pages deployment, use the dashboard or wrangler pages commands
+
+name = "friday-magnetic"
+compatibility_date = "2026-01-01"
+
+[assets]
+	directory = "./build"
