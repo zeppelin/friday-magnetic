@@ -1,0 +1,11 @@
+# Cloudflare Pages configuration
+# This file is optional but can be used for local development with Wrangler
+# For Cloudflare Pages deployment, use the dashboard or wrangler pages commands
+#
+# Note: Workers-specific fields (name, compatibility_date) are not needed for Pages
+# The build output directory is configured in the Pages dashboard or via CLI
+
+compatibility_date = "2026-01-01"
+
+[assets]
+	directory = "./build"

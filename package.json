@@ -12,9 +12,11 @@
 		"lint": "prettier --check . && eslint .",
 		"test:unit": "vitest",
 		"test": "pnpm run test:unit -- --run && pnpm run test:e2e",
-		"test:e2e": "playwright test"
+		"test:e2e": "playwright test",
+		"upload:r2": "dotenvx run -- node scripts/upload-to-r2.js"
 	},
 	"devDependencies": {
+		"@dotenvx/dotenvx": "^1.51.4",
 		"@eslint/compat": "^1.4.0",
 		"@eslint/js": "^9.39.1",
 		"@playwright/test": "^1.57.0",
@@ -40,6 +42,7 @@
 		"tailwindcss": "^4.1.17",
 		"vite": "^7.2.6",
 		"vitest": "^4.0.15",
-		"vitest-browser-svelte": "^2.0.1"
+		"vitest-browser-svelte": "^2.0.1",
+		"wrangler": "^4.54.0"
 	}
 }

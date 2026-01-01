@@ -1,0 +1,13 @@
+{
+	"build": {
+		"command": "pnpm build",
+		"output": "build",
+		"root": "/"
+	},
+	"env": {
+		"PUBLIC_R2_CDN_URL": {
+			"description": "R2 CDN URL for MP3 files (e.g., https://your-bucket.r2.dev)",
+			"required": true
+		}
+	}
+}

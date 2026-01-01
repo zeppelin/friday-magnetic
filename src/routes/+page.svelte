@@ -1,6 +1,7 @@
 <script>
 	// svelte-ignore state_referenced_locally
-	import episodes from '$lib/episodes.json' with { type: 'json' };
+	import { getEpisodes } from '$lib/episodes.js';
+	const episodes = getEpisodes();
 </script>
 
 <h1 class="mb-8 text-4xl font-bold text-gray-900">Friday Magnetic</h1>
