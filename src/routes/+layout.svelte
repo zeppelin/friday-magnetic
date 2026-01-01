@@ -5,10 +5,13 @@
 	let { children } = $props();
 </script>
 
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
+<svelte:head>
+	<link rel="icon" href={favicon} />
+	<title>Friday Magnetic</title>
+</svelte:head>
 
 <div class="min-h-screen bg-gray-50">
-	<main class="max-w-3xl mx-auto px-6 py-12">
+	<main class="mx-auto max-w-3xl px-6 py-12">
 		{@render children()}
 	</main>
 </div>

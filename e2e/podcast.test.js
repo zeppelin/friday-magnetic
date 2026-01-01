@@ -7,9 +7,6 @@ test.describe('Podcast Sanity Checks', () => {
 		test('home page displays all episodes', async ({ page }) => {
 			await page.goto('/');
 
-			// Check page title/heading
-			await expect(page.locator('h1')).toContainText('Friday Magnetic');
-
 			// Check that all episodes are listed
 			for (const episode of episodes) {
 				await expect(page.getByRole('link', { name: episode.title })).toBeVisible();
@@ -102,7 +99,6 @@ test.describe('Podcast Sanity Checks', () => {
 
 			// Should navigate back to home
 			await expect(page).toHaveURL('/');
-			await expect(page.locator('h1')).toContainText('Friday Magnetic');
 		});
 
 		test('all episode links from home page are valid', async ({ page }) => {

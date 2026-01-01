@@ -4,8 +4,6 @@
 	const episodes = getEpisodes();
 </script>
 
-<h1 class="mb-8 text-4xl font-bold text-gray-900">Friday Magnetic</h1>
-
 <div class="space-y-12">
 	{#each episodes as episode}
 		<article class="border-b border-gray-200 pb-12 last:border-b-0">
