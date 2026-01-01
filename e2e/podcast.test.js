@@ -8,7 +8,7 @@ test.describe('Podcast Sanity Checks', () => {
 			await page.goto('/');
 
 			// Check page title/heading
-			await expect(page.locator('h1')).toContainText('Podcast Episodes');
+			await expect(page.locator('h1')).toContainText('Friday Magnetic');
 
 			// Check that all episodes are listed
 			for (const episode of episodes) {
@@ -102,7 +102,7 @@ test.describe('Podcast Sanity Checks', () => {
 
 			// Should navigate back to home
 			await expect(page).toHaveURL('/');
-			await expect(page.locator('h1')).toContainText('Podcast Episodes');
+			await expect(page.locator('h1')).toContainText('Friday Magnetic');
 		});
 
 		test('all episode links from home page are valid', async ({ page }) => {
@@ -227,7 +227,6 @@ test.describe('Podcast Sanity Checks', () => {
 
 			// Validate required RSS channel elements
 			expect(channel.title).toBeDefined();
-			expect(channel.description).toBeDefined();
 			expect(channel.link).toBeDefined();
 			expect(channel.language).toBeDefined();
 

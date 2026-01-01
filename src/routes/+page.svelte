@@ -3,7 +3,7 @@
 	import episodes from '$lib/episodes.json' with { type: 'json' };
 </script>
 
-<h1 class="mb-8 text-4xl font-bold text-gray-900">Podcast Episodes</h1>
+<h1 class="mb-8 text-4xl font-bold text-gray-900">Friday Magnetic</h1>
 
 <div class="space-y-12">
 	{#each episodes as episode}

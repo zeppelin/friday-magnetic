@@ -7,8 +7,7 @@ export async function GET({ url }) {
 	const baseUrl = url.origin;
 
 	const feed = new Podcast({
-		title: 'Podcast',
-		description: 'A podcast feed',
+		title: 'Friday Magnetic',
 		feedUrl: `${baseUrl}/rss.xml`,
 		siteUrl: baseUrl,
 		language: 'en-us',
