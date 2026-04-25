@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
 /**
- * Script to upload MP3 files from static/ directory to R2 bucket
+ * Script to upload MP3 files from media/ directory to R2 bucket
  *
  * Usage:
- *   node scripts/upload-to-r2.js
- *   node scripts/upload-to-r2.js --bucket=friday-magnetic
+ *   pnpm run upload:r2
  *   node scripts/upload-to-r2.js --dry-run
  */
 
@@ -14,7 +13,7 @@ import { join } from 'path';
 import { execSync } from 'child_process';
 
 const BUCKET_NAME = process.env.R2_BUCKET;
-const STATIC_DIR = './static';
+const MEDIA_DIR = './media';
 const DRY_RUN = process.argv.includes('--dry-run');
 
 if (!BUCKET_NAME) {
@@ -60,13 +59,13 @@ async function uploadToR2(file) {
 }
 
 async function main() {
-	console.log(`Finding MP3 files in ${STATIC_DIR}...`);
+	console.log(`Finding MP3 files in ${MEDIA_DIR}...`);
 
 	try {
-		const mp3Files = await getMp3Files(STATIC_DIR);
+		const mp3Files = await getMp3Files(MEDIA_DIR);
 
 		if (mp3Files.length === 0) {
-			console.log('No MP3 files found in static/ directory');
+			console.log('No MP3 files found in media/ directory');
 			return;
 		}
 

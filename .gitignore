@@ -10,6 +10,10 @@ node_modules
 /.svelte-kit
 /build
 
+# Media (uploaded to R2, not deployed with Pages)
+/media
+*.mp3
+
 # OS
 .DS_Store
 Thumbs.db
