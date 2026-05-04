@@ -13,6 +13,7 @@ import { join } from 'path';
 import { execSync } from 'child_process';
 
 const BUCKET_NAME = process.env.R2_BUCKET;
+const JURISDICTION = process.env.R2_JURISDICTION;
 const MEDIA_DIR = './media';
 const DRY_RUN = process.argv.includes('--dry-run');
 
@@ -41,7 +42,8 @@ async function getMp3Files(dir) {
 }
 
 async function uploadToR2(file) {
-	const command = `wrangler r2 object put ${BUCKET_NAME}/${file.name} --file=${file.path}`;
+	const jurisdictionFlag = JURISDICTION ? ` --jurisdiction ${JURISDICTION}` : '';
+	const command = `wrangler r2 object put ${BUCKET_NAME}/${file.name} --file=${file.path} --remote${jurisdictionFlag}`;
 
 	if (DRY_RUN) {
 		console.log(`[DRY RUN] Would run: ${command}`);

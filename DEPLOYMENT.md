@@ -19,14 +19,20 @@ This guide covers deploying Friday Magnetic to Cloudflare Pages with R2 for MP3 
 ### Create R2 Bucket
 
 ```bash
-# Create a new R2 bucket for your MP3 files
-wrangler r2 bucket create friday-magnetic
+# Create a new R2 bucket in the EU jurisdiction
+wrangler r2 bucket create friday-magnetic --jurisdiction eu
 
 # Or use the Cloudflare dashboard:
 # 1. Go to R2 in Cloudflare dashboard
-# 2. Create bucket named "friday-magnetic"
-# 3. Make it public (or use a custom domain)
+# 2. Create bucket named "friday-magnetic" with location: EU
+# 3. Attach a custom domain (or enable r2.dev public access)
 ```
+
+> **Note:** This project's bucket lives in the EU jurisdiction. Every
+> `wrangler r2 …` command you run against it needs `--jurisdiction eu`,
+> otherwise Cloudflare reports "The specified bucket does not exist."
+> The upload script picks this up automatically from `R2_JURISDICTION`
+> in `.env`.
 
 ### Configure Public Access
 
@@ -48,12 +54,18 @@ You have two options for serving files from R2:
 
 ### Upload MP3 Files
 
-```bash
-# Upload all MP3 files from static/ directory
-wrangler r2 object put friday-magnetic/episode-1.mp3 --file=./static/episode-1.mp3
-wrangler r2 object put friday-magnetic/episode-2.mp3 --file=./static/episode-2.mp3
+MP3 files live in `./media/` (gitignored, never bundled into the Pages
+build). Upload them to R2 with the bundled script:
 
-# Or use a script (see scripts/upload-to-r2.js)
+```bash
+pnpm run upload:r2
+```
+
+Or manually:
+
+```bash
+wrangler r2 object put friday-magnetic/episode-1.mp3 \
+  --file=./media/episode-1.mp3 --jurisdiction eu --remote
 ```
 
 You can also use the Cloudflare dashboard to upload files.
@@ -65,10 +77,14 @@ You can also use the Cloudflare dashboard to upload files.
 Create a `.env` file (copy from `.env.example`):
 
 ```bash
-PUBLIC_R2_CDN_URL=https://your-bucket.r2.dev
-# or
-PUBLIC_R2_CDN_URL=https://cdn.yourdomain.com
+R2_BUCKET=friday-magnetic
+R2_JURISDICTION=eu
+PUBLIC_R2_CDN_URL=https://static.fm.babicz.hu
+CLOUDFLARE_API_TOKEN=<token-with-r2-edit>
 ```
+
+Generate the API token at <https://dash.cloudflare.com/profile/api-tokens>
+with **Account → Workers R2 Storage → Edit** scoped to your account.
 
 ### For Cloudflare Pages
 
@@ -120,9 +136,9 @@ wrangler pages deploy build --project-name=friday-magnetic
 When adding new episodes:
 
 1. Add episode data to `src/lib/episodes.json`
-2. Upload MP3 file to R2:
+2. Drop the MP3 in `./media/` and upload to R2:
    ```bash
-   wrangler r2 object put friday-magnetic/episode-3.mp3 --file=./static/episode-3.mp3
+   pnpm run upload:r2
    ```
 3. Commit and push (if using Git integration) or rebuild and redeploy
 
